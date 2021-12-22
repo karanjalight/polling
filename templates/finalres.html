@@ -248,7 +248,7 @@
                         <ul class="nav navbar-nav">
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Polls</a></li>
                             <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Menu </a>
-                                <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">Results</a><a class="dropdown-item" role="presentation" href="#">News updates</a><a class="dropdown-item" role="presentation" href="#">About</a></div>
+                                <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">News updates</a><a class="dropdown-item" role="presentation" href="#">About</a></div>
                             </li>
                         </ul>
                         <form class="form-inline mr-auto" target="_self">
@@ -261,58 +261,45 @@
             <div class="container hero">
                 <div class="row">
                     <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
+
+
+                                                  
+                      {% block content %}
+
+
+                      <h3 style = "margin-bottom: 20px"><strong>Results</strong></h3>
+                      
+                      <h4>{{question.question}}</h4>
+                      
+                      <ul class="list-group">
+                      {% for option in options %}
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                          {{option.option}}
+                          <span class="badge bg-primary rounded-pill">{{option.vote}}</span>
+                        </li>
+                        {% endfor %}
+                        <br><br>
+                      
+                        <a class="nav-link waves-effect" href="{% url 'index' %}"
+                         style="color: rgb(226, 227, 235); 
+                         text-align: center; border: 2px solid #000;
+                          color: #000;
+                          border-radius: 12px ;
+                          width : 40%;" ><strong>Back to home</i></strong></a>
+                        
+                      </ul>
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      {% endblock %}
                         
 
                        
          
-          
-                        {% block content %}
-
-                        <br>
-                          <h2 style="text-align: center;" ><strong>Sign up</strong></h2>
-                          <form method="post" style="text-align: center;">
-                            {% csrf_token %}
-
-                            <p>please set you ID number as your Username</p>
-                            {% for field in form %}
-                              <p style="border: 0;  border-radius: 15px ">
-                                
-                                
-                                {{ field.label_tag }}<br>
-                                {{ field }}
-                                
-                                {% for error in field.errors %}
-                                  <p style="color: red">{{ error }}</p>
-                                {% endfor %}
-                              </p>
-                            {% endfor %}
-                            <input type="submit" value = "register" style="font-size: 18px;
-                            font-weight: bold;
-                           
-                            padding: 10px 10px;
-                            width: 50%;
-                            border:0;
-                            border-radius: 15px;
-                            background-color: skyblue;
-                            text-align: center;
-                            margin:20px 0px"></button>
-                            <div class='login' style="text-align: centre;">
-                              <p>
-                                Already have an Account?? 
-
-                                <br>
-                                <br>
-                                <span style="border:0;
-                              border-radius: 15px;
-                              background-color: rgb(201, 149, 214);
-                              padding: 10px 10px;
-                              width: 80px;
-                              align-self: center;"><a href="{% url 'login' %}">Login</a></p>
-                              </span>
-                              
-                            </div>
-                          </form>
-                        {% endblock %}
                         
                        
                    
@@ -367,6 +354,3 @@
 </body>
 
 </html>
-
-
- 
