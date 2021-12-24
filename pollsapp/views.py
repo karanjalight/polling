@@ -49,7 +49,7 @@ def result(request,pk):
     inputvalue = request.POST['choice']
 
     if Choice.objects.filter(userid=id_number).exists():
-      messages.error(request, 'User'+ id_number + ' has already voted!')
+      messages.error(request, 'User: ' + id_number + ' has already voted!')
       return redirect('index')
     else:
       selected_options = options.get(id=inputvalue)
@@ -60,12 +60,21 @@ def result(request,pk):
 
 
 
-def final(request, pk):
-   question = Question.objects.get(id=pk)
-   options = question.choices.all()
+# def final(request, pk):
+#    question = Question.objects.get(id=pk)
+#    options = question.choices.all()
 
-   return render(request, 'finalres.html', {'question':question, 'options': options})
+#    return render(request, 'finalres.html', {'question':question, 'options': options})
+
+
+def final(request,pk):
+  question = Question.objects.get(id=pk)
+  options = question.choices.all()
+
   
+  
+  return render(request, 'finalres.html', {'question':question, 'options':options})
+
 
 # @login_required
 
